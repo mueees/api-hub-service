@@ -1,0 +1,12 @@
+{
+  "name": "hub",
+  "description": "Hub service",
+  "port": 10001,
+  "services": [
+    {
+      "name": "email",
+      "host": "127.0.0.1",
+      "port": 10000
+    }
+  ]
+}
