@@ -1,1 +1,1 @@
-# api-hub-service
+# hub-service
