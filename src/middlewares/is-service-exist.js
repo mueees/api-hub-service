@@ -1,6 +1,7 @@
 'use strict';
 
 let config = require('config');
+let _ = require('lodash');
 let services = config.get('services');
 let error = require('mue-core/modules/error');
 

@@ -36,9 +36,10 @@ module.exports = function (req, res, next) {
     let requestToService = request(requestOptions);
 
     requestToService.on('error', function (err) {
-        log.error('Cannot redirect request');
+        log.error('Api is unreachable');
+        log.error(err);
 
-        next(error.getHttpError(400, 'Cannot redirect request'));
+        next(error.getHttpError(400, 'Api is unreachable'));
     });
 
     requestToService.pipe(res);
