@@ -21,7 +21,7 @@ module.exports = function (req, res, next) {
 
     let url = 'http://' + req.service.host + ':' + req.service.port + getRequestUrl(req.originalUrl);
 
-    log.debug('Redirected url: ' + url);
+    log.info('Redirected url: ' + url);
 
     let requestOptions = {
         url: url,
