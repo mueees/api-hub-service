@@ -10,13 +10,17 @@ let log = require('mue-core/modules/log')(module);
 
 const REQUEST_TIMEOUT = 30000;
 
+function getRequestUrl(originalUrl) {
+    return '/' + originalUrl.split('/').slice(2).join('/');
+}
+
 module.exports = function (req, res, next) {
     assert.isString(req.headers['mue-request-source']);
     assert.isNumber(req.service.port);
     assert.isString(req.service.host);
 
     let requestOptions = {
-        url: 'http://' + req.service.host + ':' + req.service.port + req.originalUrl,
+        url: 'http://' + req.service.host + ':' + req.service.port + getRequestUrl(req.originalUrl),
         method: req.method,
 
         headers: {
