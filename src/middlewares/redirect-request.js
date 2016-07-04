@@ -11,7 +11,9 @@ let log = require('mue-core/modules/log')(module);
 const REQUEST_TIMEOUT = 30000;
 
 function getRequestUrl(originalUrl) {
-    return '/api/' + originalUrl.split('/').slice(2).join('/');
+    // originalUrl - /api/service-name/record/id
+
+    return '/api/' + originalUrl.split('/').slice(3).join('/');
 }
 
 module.exports = function (req, res, next) {
@@ -20,7 +22,6 @@ module.exports = function (req, res, next) {
     assert.isString(req.service.host);
 
     let url = 'http://' + req.service.host + ':' + req.service.port + getRequestUrl(req.originalUrl);
-
     log.info('Redirected url: ' + url);
 
     let requestOptions = {
