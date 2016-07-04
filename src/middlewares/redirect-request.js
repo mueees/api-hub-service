@@ -11,7 +11,7 @@ let log = require('mue-core/modules/log')(module);
 const REQUEST_TIMEOUT = 30000;
 
 function getRequestUrl(originalUrl) {
-    return '/' + originalUrl.split('/').slice(2).join('/');
+    return '/api/' + originalUrl.split('/').slice(2).join('/');
 }
 
 module.exports = function (req, res, next) {
