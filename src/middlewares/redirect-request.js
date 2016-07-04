@@ -19,8 +19,12 @@ module.exports = function (req, res, next) {
     assert.isNumber(req.service.port);
     assert.isString(req.service.host);
 
+    let url = 'http://' + req.service.host + ':' + req.service.port + getRequestUrl(req.originalUrl);
+
+    log.debug('Redirected url: ' + url);
+
     let requestOptions = {
-        url: 'http://' + req.service.host + ':' + req.service.port + getRequestUrl(req.originalUrl),
+        url: url,
         method: req.method,
 
         headers: {
