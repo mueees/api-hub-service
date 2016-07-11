@@ -10,6 +10,15 @@ let markServiceRequest = require('middlewares/mark-service-request');
 
 module.exports = function (app) {
     /**
+     * Allow Cross Origin Resource Sharing
+     * */
+    app.use(function (request, response, next) {
+        response.header("Access-Control-Allow-Origin", "*");
+        response.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        next();
+    });
+
+    /**
      * WEB to Service request
      * */
     app.use('/api/:service/*', [
