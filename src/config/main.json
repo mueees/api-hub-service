@@ -12,6 +12,16 @@
       "name": "read-hub",
       "host": "127.0.0.1",
       "port": 20002
+    },
+    {
+      "name": "account",
+      "host": "127.0.0.1",
+      "port": 20003
+    },
+    {
+      "name": "mue",
+      "host": "127.0.0.1",
+      "port": 20004
     }
   ]
 }
