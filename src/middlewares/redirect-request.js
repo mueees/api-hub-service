@@ -5,6 +5,7 @@ let config = require('config');
 let services = config.get('services');
 let request = require('request');
 
+let requestPromise = require('mue-core/modules/request-promise');
 let error = require('mue-core/modules/error');
 let log = require('mue-core/modules/log')(module);
 
@@ -17,10 +18,6 @@ function getRequestUrl(originalUrl) {
 }
 
 module.exports = function (req, res, next) {
-    assert.isString(req.headers['mue-request-source']);
-    assert.isNumber(req.service.port);
-    assert.isString(req.service.host);
-
     let url = 'http://' + req.service.host + ':' + req.service.port + getRequestUrl(req.originalUrl);
     log.info('Redirected url: ' + url);
 
@@ -44,11 +41,12 @@ module.exports = function (req, res, next) {
 
     let requestToService = request(requestOptions);
 
-    requestToService.on('error', function (err) {
-        log.error('Api is unreachable');
-        log.error(err);
+    requestToService.on('error', function () {
+        log.error(req.service.name + ' service is unreachable');
+        log.error('Url: ' + url);
+        log.error('Method: ' + req.method);
 
-        next(error.getHttpError(400, 'Api is unreachable'));
+        next(error.getHttpError(400, 'Server error. Please try again'));
     });
 
     requestToService.pipe(res);

@@ -4,6 +4,7 @@ let config = require('config');
 let _ = require('lodash');
 let services = config.get('services');
 let error = require('mue-core/modules/error');
+let log = require('mue-core/modules/log')(module);
 
 module.exports = function (request, response, next) {
     var service = _.find(services, {
@@ -15,6 +16,8 @@ module.exports = function (request, response, next) {
 
         next();
     } else {
-        next(error.getHttpError(400, 'Cannot find service'));
+        log.error('Cannot find ' + request.params.service);
+
+        next(error.getHttpError(400, 'Server error. Please try again'));
     }
 };
