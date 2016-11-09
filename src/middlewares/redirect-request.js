@@ -39,10 +39,11 @@ module.exports = function (req, res, next) {
 
     let requestToService = request(requestOptions);
 
-    requestToService.on('error', function () {
+    requestToService.on('error', function (err) {
         log.error(req.service.name + ' service is unreachable');
         log.error('Url: ' + url);
         log.error('Method: ' + req.method);
+        log.error(err);
 
         next(error.getHttpError(400, 'Server error. Please try again'));
     });
