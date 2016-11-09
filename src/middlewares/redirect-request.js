@@ -1,11 +1,9 @@
 'use strict';
 
-let assert = require('chai').assert;
 let config = require('config');
 let services = config.get('services');
 let request = require('request');
 
-let requestPromise = require('mue-core/modules/request-promise');
 let error = require('mue-core/modules/error');
 let log = require('mue-core/modules/log')(module);
 

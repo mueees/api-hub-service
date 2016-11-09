@@ -27,6 +27,16 @@
       "name": "security",
       "host": "127.0.0.1",
       "port": 20005
+    },
+    {
+      "name": "rss",
+      "host": "127.0.0.1",
+      "port": 20006
+    },
+    {
+      "name": "rabbit",
+      "host": "127.0.0.1",
+      "port": 20007
     }
   ]
 }
